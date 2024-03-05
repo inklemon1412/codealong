@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+   
+</head>
+<body>
+    <style>
+       
+        p#animal {
+            font-size: 4rem;
+            margin: 30% auto;
+            color: white;
+        }
+        p#response{
+            padding: 21px;
+            color: black;
+            background-color: aqua;
+            border: 5px solid black;
+            letter-spacing: 2px;
+           font-size: larger;
+        }
+        #inputItem{
+    height: 30px ;
+    width: 400px;
+}
+    
+    </style>
+    <div id="app"></div>
+
+    <script>
+        /*Du skal vise frem enten Ugle, Katt eller Hamster i en div når du trykker på en knapp "Random animal".
+Lag et inputfelt og en knapp til der du kan legge til flere dyr som kan dukke opp i diven når du trykker på knappen "Random animal".
+Lag også en knapp "Show all animals" som viser frem alle dyrene i en liste og endrer knappeteksten til "Hide all animals" når du trykker på den en gang til for å skjule dyrelisten fra viewet.
+
+Ekstra: 
+Hvis dyret er en hund, skal teksten få en annen farge. Bruk en if-setning.
+Trekk ut random-funksjonen til å bruke return*/
+let animals = ['katt', 'ugle', 'hamster'];
+let inputItem = '';
+let animalsShowing = 'false';
+let openOrClose = 'show animals';    
+let lookAtAnimals = 'hvilket dyr har du';
+
+view()
+function view(){
+        document.getElementById('app').innerHTML = `
+       <div id="content">
+        <button onclick="randomAnimal()">Random animals</button>
+        <p id="animals"></p>
+        <p id="response"></p>
+        <input type="text" id="inputAnimal" onchange="addAnimal()">
+        <button onclick="addAnimal()">Add more animals</button>
+            <br/>
+            <button onclick="showAnimals()">${openOrClose}</button>
+            <br/>
+            <div id="theAnimals">${lookAtAnimals}</div>
+            </div>
+
+        `;
+    }
+
+    function randomAnimal() {
+        let animals = ['katt', 'ugle', 'hamster'];
+ let i = Math.floor(Math.random() * 3) ;
+response.innerText = animals[i];
+
+if(i == 1){
+    document.getElementById('response').style.color = "red";
+} else{
+    document.getElementById('response').style.color = "blue";
+}
+ 
+     }  view(); 
+
+function addAnimal(){
+    newAnimal = document.getElementById('inputAnimal').value;
+    animals.push(newAnimal);
+         
+view();
+} 
+
+
+
+function showAnimals(){
+  animalsShowing = !animalsShowing;
+  if(animalsShowing == true){
+    lookAtAnimals = 'hvilket dyr har du';
+    openOrClose = 'show animals';
+  } else {
+    lookAtAnimals = animals;
+    openOrClose = 'hide animals';
+  }
+  view();
+}
+       
+            
+        
+    </script>
+</body>
+</html>
